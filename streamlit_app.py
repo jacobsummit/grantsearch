@@ -84,6 +84,7 @@ def nsf_query(keywords, pi, org, state, sdate, edate):
 if grantSource == "NSF":
     df, commkeys = nsf_query(keywords, pi, org, state, sdate, edate)
 elif grantSource == "NIH":
+    nih_query()
     
 
 # df = df.sort_values('awardedamounttodate').sort_values('count',ascending=False)
