@@ -22,7 +22,7 @@ with st.sidebar:
     edate = st.date_input("Enter End Date in Date Range")
 
 def nih_query(keywords, pi, org, state, sdate, edate):
-    
+    print()
 
 
 def nsf_query(keywords, pi, org, state, sdate, edate):
