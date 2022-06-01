@@ -4,17 +4,18 @@ from fundNSF import FundNSF
 from datetime import date
 from datetime import datetime
 pd.set_option('display.float_format', lambda x: f'{x:.0f}')
-st.set_page_config(layout='wide', page_icon="random", page_title="SVS Grant Search")
+st.set_page_config(layout='wide', page_icon="random", page_title="Ultra Grant Search 2000")
 
 
 DATA_URL = ('UT-TX-OH-NM-CA-2016_2022.csv')
 
 st.image('https://img1.wsimg.com/isteam/ip/ec7b4a1b-11a1-4c5e-8cc9-dfc23171b278/SVS_Logo_Horizontal_White.png/:/rs=w:358,h:75,cg:true,m/cr=w:358,h:75/qt=q:95')
 
-st.title('Grant Search Tool')
+st.title('Ultra Grant Search 2000')
 df = pd.DataFrame
 with st.sidebar:
     st.write("Use commas to separate values")
+    grantSource = st.selectbox("Choose a Grant Database:",["NSF"])
     keywords = st.text_input("Keyword(s)")
     pi = st.text_input("Principal Investigator(s)")
     org = st.text_input("Organization(s)")
