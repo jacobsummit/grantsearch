@@ -7,15 +7,13 @@ pd.set_option('display.float_format', lambda x: f'{x:.0f}')
 st.set_page_config(layout='wide', page_icon="random", page_title="Ultra Grant Search 2000")
 
 
-DATA_URL = ('UT-TX-OH-NM-CA-2016_2022.csv')
-
 st.image('https://img1.wsimg.com/isteam/ip/ec7b4a1b-11a1-4c5e-8cc9-dfc23171b278/SVS_Logo_Horizontal_White.png/:/rs=w:358,h:75,cg:true,m/cr=w:358,h:75/qt=q:95')
 
 st.title('Ultra Grant Search 2000')
 df = pd.DataFrame
 with st.sidebar:
     st.write("Use commas to separate values")
-    grantSource = st.selectbox("Choose a Grant Database:",["NSF"])
+    grantSource = st.selectbox("Choose a Grant Database:",["NSF", "NIH"])
     keywords = st.text_input("Keyword(s)")
     pi = st.text_input("Principal Investigator(s)")
     org = st.text_input("Organization(s)")
@@ -23,14 +21,8 @@ with st.sidebar:
     sdate = st.date_input("Enter Start Date in Date Range", value= date(2015, 1, 1))
     edate = st.date_input("Enter End Date in Date Range")
 
-@st.cache
-def load_data(nrows):
-    data = pd.read_csv(DATA_URL, nrows=nrows)
-    lowercase = lambda x: str(x).lower()
-    data.rename(lowercase, axis='columns', inplace=True)
-    data['startdate'] = pd.to_datetime(data['startdate']).dt.date
-    data['organizationphone'] = data['organizationphone'].astype(str)
-    return data
+def nih_query(keywords, pi, org, state, sdate, edate):
+    
 
 
 def nsf_query(keywords, pi, org, state, sdate, edate):
@@ -89,8 +81,10 @@ def nsf_query(keywords, pi, org, state, sdate, edate):
 # df = df[df['state'].str.contains(statecode, case=False, na=False)]
 # df = df[df['startdate']>=startdate]
 # df = df[df['startdate']<=enddate]
-
-df, commkeys = nsf_query(keywords, pi, org, state, sdate, edate)
+if grantSource == "NSF":
+    df, commkeys = nsf_query(keywords, pi, org, state, sdate, edate)
+elif grantSource == "NIH":
+    
 
 # df = df.sort_values('awardedamounttodate').sort_values('count',ascending=False)
 # Notify the reader that the data was successfully loaded.
