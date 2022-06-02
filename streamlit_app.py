@@ -13,7 +13,7 @@ st.title('Ultra Grant Search 2000')
 df = pd.DataFrame
 with st.sidebar:
     st.write("Use commas to separate values")
-    grantSource = st.selectbox("Choose a Grant Database:",["NSF", "NIH"])
+    grantSource = st.selectbox("Choose a Grant Database:",["NSF", "NIH - NOT FUNCTIONAL"])
     keywords = st.text_input("Keyword(s)")
     pi = st.text_input("Principal Investigator(s)")
     org = st.text_input("Organization(s)")
