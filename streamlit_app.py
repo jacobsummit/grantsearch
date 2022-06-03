@@ -58,7 +58,7 @@ def nsf_query(keywords, pi, org, state, sdate, edate):
     
     # awardeeName=org, pdPIName=pi
     nsf.set_params(**params)
-    commKeywords = keywords.replace(",","|").replace(" ","")
+    commKeywords = keywords.replace(", ","|").replace(",","")
     # commKeywords = ",".join(map(str, commKeywords))
     data = nsf.keyword_search(commKeywords)
     df = pd.DataFrame(data, columns = ['id','title','fundProgramName','date','piFirstName',
